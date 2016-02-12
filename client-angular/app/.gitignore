@@ -1,0 +1,10 @@
+# generated files using gulp[ scss]
+assets/styles/style.css
+assets/styles/style.min.css
+css
+
+# minified js files
+
+# This is the folder used by the production deployment
+build/
+
