@@ -7,7 +7,7 @@
   "main": "server/server.js",
   "scripts": {
     "start": "node .",
-    "pretest": "jshint .",
+    "pretest": "npm install;jshint .",
     "test": "mocha",
     "posttest": "nsp check"
   },
@@ -27,7 +27,9 @@
   "devDependencies": {
     "jshint": "^2.5.6",
     "nsp": "^2.1.0",
-    "mocha": "^2.4.5"
+    "mocha": "^2.4.5",
+    "should": "~8.2.2",
+    "supertest": "~1.2.0"
   },
   "repository": {
     "type": "",
