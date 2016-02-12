@@ -27,7 +27,9 @@ describe('Server starts', function() {
     it('Should retrun time', function(done) {
       helperTest.sendAPIRequest(app, helperTest.GET, '/', {}, SUCCESS_OK.status,
                                 function(err, result) {
-        if (err) return done(err);
+        if (err) {
+          return done(err);
+        }
         
         var body = result.res.body;
 
@@ -41,7 +43,9 @@ describe('Server starts', function() {
       helperTest.sendAPIRequest(app, helperTest.GET, '/api/BadURL', {},
                                 ERROR_NOT_FOUND.status,
                                 function(err, result) {
-        if (err) return done(err);
+        if (err) {
+          return done(err);
+        }
 
         helperTest.checkForErrorResponse(result, ERROR_NOT_FOUND, function() {
           var body = result.res.body;
@@ -56,7 +60,9 @@ describe('Server starts', function() {
       helperTest.sendAPIRequest(app, helperTest.GET, '/explorer/', {},
                                 SUCCESS_OK.status,
                                 function(err, result) {
-        if (err) return done(err);
+        if (err) {
+          return done(err);
+        }
 
         done();
       });

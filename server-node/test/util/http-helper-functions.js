@@ -18,12 +18,13 @@ sendAPIRequest Function paramters
   - cb: callback to invoke afterwards
 
 
-checkForErrorResponse Function paramters
+checkForErrorResponse Function parameters
   - result: the actual error object to compare
   - expectedErr: the expected error
   - cb: callback to invoke afterwards
 */
 
+'use strict';
 
 var should = require('should');
 var request = require('supertest');
@@ -50,7 +51,9 @@ module.exports = {
           .send(data)
           .expect(expectedStatus)
           .end(function(err, result){
-            if (err) return cb(err);
+            if (err) {
+              return cb(err);
+            }
             return cb(null,result);
           });
       }
