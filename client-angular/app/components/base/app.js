@@ -1,8 +1,10 @@
+'use strict';
+
 angular.module('app', [
-    //Internal Modules
+    //Internal Modules:
     'app.config',
     'app.landingPage',
-    //Lib Modules
+    //Lib Modules:
     'ui.router'
 ])
 

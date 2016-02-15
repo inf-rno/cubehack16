@@ -1,4 +1,10 @@
-angular.module('app.landingPage', ['ui.router'])
+'use strict';
+
+angular.module('app.landingPage', [
+    //Internal Modules:
+    //Lib Modules:
+    'ui.router'
+    ])
 
 .config(['$stateProvider', function($stateProvider) {
   $stateProvider.state('app.landingPage', {

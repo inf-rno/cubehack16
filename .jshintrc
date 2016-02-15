@@ -19,11 +19,11 @@
   "undef": true,
   "unused": false,
   "strict": false,
-  "maxparams": 30, // TODO: back to 10, was upped to 10 because of socialPosts.js
+  "maxparams": 10,
   "maxdepth": 5,
-  "maxstatements": 70, // TODO: back to 40, was upped to 10 because of socialPosts.js
-  "maxcomplexity": 10, // TODO: back to 8, was upped to 10 because of socialPosts.js
-  "maxlen": 400, // TODO: back to 120, was upped to 10 because of some controllers
+  "maxstatements": 40,
+  "maxcomplexity": 8,
+  "maxlen": 120,
 
   "asi": false,
   "boss": false,
@@ -53,7 +53,7 @@
 
   "browser": true,
   "node": true,
-  "strict": false, // Require `use strict` pragma in every file.
+  "strict": true,
   "globals": {
     "$": false,
     "console": false,

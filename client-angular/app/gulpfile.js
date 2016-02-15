@@ -110,7 +110,7 @@ gulp.task('copyCSS', ['sass'], function() {
     .pipe(gulp.dest('./build'));
 });
 
-gulp.task('build', ['clean', 'sass', 'copyBower', 'copyJS', 'copyHTML', 'copyCSS', 'jshintAndJScsForce'], function() {
+gulp.task('build', ['clean', 'sass', 'copyBower', 'copyJS', 'copyHTML', 'copyCSS', 'jshintAndJscsForce'], function() {
  return gulp.src('./build/index.html')
     .pipe(htmlreplace({
         'css': ['vendor.css?rev=@@hash', 'app.min.css?rev=@@hash'],
