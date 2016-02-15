@@ -1,0 +1,13 @@
+{
+  "name": "Angular app for boilerplate",
+  "description": "The angular version of our client-side boilerplate",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "angular": "^1.3.13",
+    "angular-ui-router": "~0.2.18"
+  },
+  "resolutions": {
+    "angular": "1.3.13"
+  }
+}

@@ -13,7 +13,7 @@
     },
     "helmet#xssFilter": {},
     "helmet#frameguard": {
-      "params": [ 
+      "params": [
         "deny"
        ]
     },
@@ -26,7 +26,7 @@
     "helmet#hidePoweredBy": {},
     "helmet#ieNoOpen": {},
     "helmet#noSniff": {},
-    "helmet#noCache": { 
+    "helmet#noCache": {
       "enabled": false
     }
   },
@@ -42,6 +42,13 @@
     }
   },
   "files": {
+    "loopback#static": [{
+      "paths": ["/client"],
+      "params": "$!../public/client"
+      }, {
+      "paths": ["/admin"],
+      "params": "$!../public/admin"
+      }]
   },
   "final": {
     "loopback#urlNotFound": {}
