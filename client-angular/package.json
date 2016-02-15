@@ -1,9 +1,9 @@
 {
-  "name": "adminPortal",
-  "private": true,
+  "name": "client-angular",
   "version": "0.1.0",
-  "description": "The admin portal for user role management",
+  "description": "The boilerplate for angularJS client",
   "license": "Proprietary",
+  "private": true,
   "dependencies": {
     "gulp-jscs-stylish": "^1.3.0"
   },
