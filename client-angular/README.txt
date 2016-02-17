@@ -1,6 +1,6 @@
 To Launch the app:
 
-cd /client-angular
+cd ROOT_OF_REPO
 Run: 'npm install'
 
 //Start the local server for the app

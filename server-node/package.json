@@ -7,7 +7,7 @@
   "main": "server/server.js",
   "scripts": {
     "start": "node .",
-    "pretest": "npm install;jshint .",
+    "pretest": "npm install; jshint .",
     "test": "istanbul cover --include-all-sources _mocha -- -R spec",
     "posttest": "nsp check"
   },

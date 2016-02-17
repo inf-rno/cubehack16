@@ -1,0 +1,16 @@
+#!/bin/sh
+
+read local_ref local_sha remote_ref remote_sha
+rRef=$remote_ref
+lRef=$local_ref
+
+cd pre-push-hook
+# use locally installed gulp instance in case none was installed globally
+./node_modules/gulp/bin/gulp.js pre-push --remote $rRef --local $lRef --origin $1
+
+if [ $? -ne 0 ] 
+then
+  exit 1
+fi
+
+exit 0

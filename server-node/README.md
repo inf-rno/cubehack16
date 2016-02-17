@@ -6,6 +6,7 @@ Sample application to base larger projects on. Clone and fork to extend.
 Setup
 -----
 
+	cd ROOT_OF_REPO
     npm install
 
 Testing
