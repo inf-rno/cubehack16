@@ -1,21 +1,14 @@
 'use strict';
 
-angular.module('app', [
-    //Internal Modules:
-    'app.config',
-    'app.landingPage',
-    //Lib Modules:
-    'ui.router'
-])
+angular.module('app')
+  .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 
-.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+    $stateProvider.state('app', {
+      url: '/app',
+      templateUrl: 'components/base/AppBase.html',
+      abstract: true,
+      controller: 'BaseViewController'
+    });
 
-  $stateProvider.state('app', {
-    url: '/app',
-    templateUrl: 'components/base/AppBase.html',
-    abstract: true,
-    controller: 'BaseViewController'
-  });
-
-  $urlRouterProvider.otherwise('/landing');
-}]);
+    $urlRouterProvider.otherwise('/landing');
+  }]);
