@@ -22,21 +22,19 @@ tasks.forEach(function(task) {
 
 //setup paths
 var ignore = [
-  '!./build/**/*.*',
-  '!./libs/bower_components/**/*.*',
-  '!./gulptasks/*.js',
-  '!./gulpfile.js'
+  '!./app/libs/bower_components/**/*.*'
 ];
 
 var jsSrc = [
-  './**/*.js'
+  './app/**/*.js'
 ].concat(ignore);
+
 var htmlSrc = [
-  './**/*.html',
-  './**/*.png'
+  './app/**/*.html'
 ].concat(ignore);
+
 var cssSrc = [
-  './assets/styles/style.min.css'
+  './app/assets/styles/style.min.css'
 ].concat(ignore);
 
 gulp.task('default', ['sass', 'inject', 'browser-sync', 'watch']);
@@ -46,8 +44,8 @@ gulp.task('inject', function() {
   gulp.src('index.html')
     .pipe(loadPlugins.inject(gulp.src(bowerFiles({
       paths: {
-        bowerrc: '.bowerrc',
-        bowerJson: 'bower.json'
+        bowerrc: 'app/.bowerrc',
+        bowerJson: 'app/bower.json'
       }
     }), {
       read: false
@@ -80,8 +78,8 @@ gulp.task('copyBower', function() {
 
   return gulp.src(bowerFiles({
       paths: {
-        bowerrc: '.bowerrc',
-        bowerJson: 'bower.json'
+        bowerrc: 'app/.bowerrc',
+        bowerJson: 'app/bower.json'
       }
     }))
     .pipe(jsFilter)

@@ -1,6 +1,7 @@
 'use strict';
 
 var gulp = require('gulp');
+var gutil = require('gulp-util');
 var sh = require('shelljs');
 
 gulp.task('git-check', function(done) {
