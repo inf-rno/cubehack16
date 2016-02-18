@@ -5,6 +5,7 @@ angular.module('app.landingPage')
     $stateProvider.state('app.landingPage', {
       url: '/landing',
       templateUrl: 'components/LandingPage/LandingPage.html',
-      controller: 'LandingPageController'
+      controller: 'LandingPageController',
+      controllerAs: 'landing'
     });
   }]);

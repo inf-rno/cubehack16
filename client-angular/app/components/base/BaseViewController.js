@@ -1,9 +1,12 @@
 'use strict';
 
-var injections = ['Config'];
 angular.module('app')
+.controller('BaseViewController', BaseViewController);
 
-.controller('BaseViewController', ['AppConfig', '$state', function(Config, $state) {
-  //wootwoot
+BaseViewController.$inject = ['$state'];
+
+function BaseViewController($state) {
+  var vm = this;
+
   $state.go('app.landingPage');
-}]);
+}

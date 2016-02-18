@@ -1,14 +1,16 @@
 'use strict';
 
 angular.module('app')
-  .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 
-    $stateProvider.state('app', {
-      url: '/app',
-      templateUrl: 'components/base/AppBase.html',
-      abstract: true,
-      controller: 'BaseViewController'
-    });
+.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 
-    $urlRouterProvider.otherwise('/landing');
-  }]);
+  $stateProvider.state('app', {
+    url: '/app',
+    templateUrl: 'components/base/AppBase.html',
+    abstract: true,
+    controller: 'BaseViewController',
+    controllerAs : 'BaseView'
+  });
+
+  $urlRouterProvider.otherwise('/landing');
+}]);

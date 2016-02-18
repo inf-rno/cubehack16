@@ -1,6 +1,10 @@
 {
   "db": {
+    "host": "localhost",
+    "port": 27017,
+    "database": "starterDB",
     "name": "db",
-    "connector": "memory"
+    "connector": "mongodb",
+    "debug": false
   }
 }

@@ -1,0 +1,8 @@
+{
+  "Product": {
+    "dataSource": "db",
+    "public": true,
+    "$promise": {},
+    "$resolved": true
+  }
+}
