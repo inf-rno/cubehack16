@@ -4,8 +4,12 @@ angular.module('app.landingPage')
   .config(['$stateProvider', function($stateProvider) {
     $stateProvider.state('app.landingPage', {
       url: '/landing',
-      templateUrl: 'components/LandingPage/LandingPage.html',
-      controller: 'LandingPageController',
-      controllerAs: 'landing'
+      views: {
+        'content': {
+          templateUrl: 'components/LandingPage/LandingPage.html',
+          controller: 'LandingPageController',
+          controllerAs: 'landing'
+        }
+      }
     });
   }]);
