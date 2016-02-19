@@ -64,8 +64,9 @@ gulp.task('inject', function() {
 
 /*----------------------DIST BUILD-----------------------------*/
 
-gulp.task('clean', function() {
+gulp.task('clean', function(cb) {
   sh.rm('-rf', './build');
+  cb();
 });
 
 gulp.task('copyBower', function() {

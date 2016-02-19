@@ -5,15 +5,6 @@
   "license": "LicenseRef-LICENSE",
   "private": true,
   "main": "server/server.js",
-  "scripts": {
-    "start": "node .",
-    "pretest": "npm install; jshint .",
-    "test": "istanbul cover --include-all-sources _mocha -- -R spec",
-    "posttest": "nsp check"
-  },
-  "engines": {
-    "node": "=5.0.0"
-  },
   "dependencies": {
     "compression": "~1.6.1",
     "cors": "~2.7.1",
@@ -36,5 +27,14 @@
   "repository": {
     "type": "",
     "url": ""
+  },
+  "scripts": {
+    "start": "node .",
+    "pretest": "npm install; jshint .",
+    "test": "istanbul cover --include-all-sources _mocha -- -R spec",
+    "posttest": "nsp check"
+  },
+  "engines": {
+    "node": "=5.0.0"
   }
 }

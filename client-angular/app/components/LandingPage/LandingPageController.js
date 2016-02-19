@@ -16,6 +16,9 @@ function LandingPageController(Products, $scope) {
     createdAt: new Date()
   };
 
+  /*
+   * BOILERPLATE-DEMO Can be deleted along all other code with the same comment
+   */
   // Make request to the database for Products model (to test database connection)
   Products.add(sampleProduct, function(data) {
     vm.requestOutput = 'Success!';

@@ -2,9 +2,11 @@
 
 var gulp = require('gulp');
 var bowerFiles = require('main-bower-files');
-var inject = require('gulp-inject');
-var angularFilesort = require('gulp-angular-filesort');
-var gulpFilter = require('gulp-filter');
+
+var loadPlugins = require('gulp-load-plugins')({
+  DEBUG: false,
+  lazy: true
+});
 
 var ignore = [
   '!./app/libs/bower_components/**/*.*'
@@ -18,7 +20,7 @@ var jsSrcWithTest = [
 gulp.task('injectTestFiles', function() {
   return gulp.src('./tests/unit-tests.conf')
     .pipe(
-      inject(
+      loadPlugins.inject(
         gulp.src(
           [].concat(
             bowerFiles({
@@ -34,7 +36,7 @@ gulp.task('injectTestFiles', function() {
           }
         )
         .pipe(
-          gulpFilter('**/*.js')
+          loadPlugins.filter('**/*.js')
         ), {
           //inject
           starttag: '/*BOWER*/',
@@ -45,8 +47,8 @@ gulp.task('injectTestFiles', function() {
         }
       )
     )
-    .pipe(inject(gulp.src(jsSrcWithTest)
-      .pipe(angularFilesort()), {
+    .pipe(loadPlugins.inject(gulp.src(jsSrcWithTest)
+      .pipe(loadPlugins.angularFilesort()), {
         starttag: '/*JS*/',
         endtag: '/*END_JS*/',
         transform: function(filepath, file, i, length) {
