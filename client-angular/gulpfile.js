@@ -41,7 +41,7 @@ gulp.task('default', ['sass', 'inject', 'browser-sync', 'watch']);
 
 // inject resources
 gulp.task('inject', function() {
-  gulp.src('index.html')
+  gulp.src('app/index.html')
     .pipe(loadPlugins.inject(gulp.src(bowerFiles({
       paths: {
         bowerrc: 'app/.bowerrc',
@@ -59,7 +59,7 @@ gulp.task('inject', function() {
     .pipe(loadPlugins.inject(gulp.src(cssSrc), {
       relative: true
     }))
-    .pipe(gulp.dest('.'));
+    .pipe(gulp.dest('./app'));
 });
 
 /*----------------------DIST BUILD-----------------------------*/
