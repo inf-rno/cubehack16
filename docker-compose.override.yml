@@ -12,8 +12,13 @@ services:
       - ./server-node/common:/app/common
     command: [ npm, start ]  
   nginx:
+    build:
+      context: ./client-angular
+      dockerfile: Dockerfile-nginx-dev
     volumes:
-     - ./client-angular/app:/app/app:ro
+      - ./client-angular/app:/app/app:ro
+    links:
+      - client
   client:
     #mount code as volume
     volumes:

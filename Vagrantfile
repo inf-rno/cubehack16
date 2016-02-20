@@ -16,7 +16,7 @@ Vagrant.configure(2) do |config|
   config.vm.synced_folder ".", "/vagrant", disabled: true
   # use rsync instead
   config.vm.synced_folder '.', '/vagrant', type: 'rsync',
-    rsync__exclude: [".git/", ".idea/", ".vagrant/", "**/node_modules/", "**/libs/", "**/bower_components/"],
+    rsync__exclude: [".git/", ".idea/", ".vagrant/", "**/node_modules/", "**/bower_components/"],
     rsync__verbose: true
 
   # provision docker

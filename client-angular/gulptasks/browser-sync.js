@@ -2,11 +2,15 @@
 
 var gulp = require('gulp');
 var browserSync = require('browser-sync');
-var configFile = require('./config.js');
+var path = require('path');
+
+var pathPieces = path.join(__dirname, '..').split(/(\/|\\)/);
 
 gulp.task('browser-sync', function() {
-  browserSync.init(['css/*.css', '*/*.js'], {
-    port: 5000,
+  browserSync.init(['./app/**/*.css', './app/**/*.js', '!./app/libs/**'], {
+    startPath: pathPieces[pathPieces.length - 1],
+    server: './app',
+    port: 4000,
     ui: {
       port: 35555,
       weinre: {
@@ -18,8 +22,7 @@ gulp.task('browser-sync', function() {
       forms: true,
       scroll: true
     },
-    proxy: configFile.appProxyURL,
     logLevel: 'warn',
-    open: true
+    open: false
   });
 });
