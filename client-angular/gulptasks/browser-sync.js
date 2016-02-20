@@ -20,7 +20,6 @@ gulp.task('browser-sync', function() {
     },
     proxy: configFile.appProxyURL,
     logLevel: 'warn',
-    open: true,
-    browser: ['google chrome']
+    open: true
   });
 });

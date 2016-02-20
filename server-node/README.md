@@ -9,7 +9,12 @@ Setup
 	cd ROOT_OF_REPO
     npm install
 
-Testing
+Run
+-----
+
+    npm start
+
+Test
 -------
 
 All of the tests that are created in this projects are located in the test/ folder. To run the tests, run the following command at the project root:

@@ -40,22 +40,6 @@
       ]
     }
   },
-  "files": {
-    "loopback#static": [
-      {
-        "paths": [
-          "/client"
-        ],
-        "params": "$!../public/client"
-      },
-      {
-        "paths": [
-          "/admin"
-        ],
-        "params": "$!../public/admin"
-      }
-    ]
-  },
   "final": {
     "loopback#urlNotFound": {}
   },

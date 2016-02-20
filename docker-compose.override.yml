@@ -1,0 +1,21 @@
+# dev environment overrides for docker-compose
+version: '2'
+services:
+  db:
+    # expose server for debugging
+    ports: 
+      - '27017:27017'
+  api:
+    #mount code as volume
+    volumes:
+      - ./server-node/server:/app/server
+      - ./server-node/common:/app/common
+    command: [ npm, start ]  
+  nginx:
+    volumes:
+     - ./client-angular/app:/app/app:ro
+  client:
+    #mount code as volume
+    volumes:
+      - ./client-angular/app:/app/app
+    command: [ npm, start, --unsafe-perm ]  

@@ -44,8 +44,8 @@ gulp.task('inject', function() {
   gulp.src('app/index.html')
     .pipe(loadPlugins.inject(gulp.src(bowerFiles({
       paths: {
-        bowerrc: 'app/.bowerrc',
-        bowerJson: 'app/bower.json'
+        bowerrc: './.bowerrc',
+        bowerJson: './bower.json'
       }
     }), {
       read: false
@@ -79,8 +79,8 @@ gulp.task('copyBower', function() {
 
   return gulp.src(bowerFiles({
       paths: {
-        bowerrc: 'app/.bowerrc',
-        bowerJson: 'app/bower.json'
+        bowerrc: './.bowerrc',
+        bowerJson: './bower.json'
       }
     }))
     .pipe(jsFilter)
