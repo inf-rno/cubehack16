@@ -3,16 +3,12 @@ Boilerplate Loopback Application
 
 Sample application to base larger projects on. Clone and fork to extend.
 
-Setup
------
+cd ROOT_OF_REPO
+vagrant up
 
-	cd ROOT_OF_REPO
-    npm install
+server is available at
 
-Run
------
-
-    npm start
+http://localhost:3000/explorer
 
 Test
 -------
