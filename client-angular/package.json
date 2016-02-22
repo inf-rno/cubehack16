@@ -41,7 +41,7 @@
   },
   "scripts": {
     "postinstall": "bower install --allow-root",
-    "start": "bower install --allow-root && gulp",
+    "start": "bower install --allow-root && mkdir -p ./app/libs && cp -r ./bower_components ./app/libs/ && gulp",
     "test": "gulp runTests",
     "test-single-run": "gulp runTests",
     "build": "cd app && gulp build"
