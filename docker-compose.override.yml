@@ -10,7 +10,7 @@ services:
     volumes:
       - ./server-node/server:/app/server
       - ./server-node/common:/app/common
-    command: [ npm, start ]  
+    command: [ npm, startDev ]  
   nginx:
     build:
       context: ./client-angular

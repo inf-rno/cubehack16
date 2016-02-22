@@ -17,10 +17,11 @@
     "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
-    "jshint": "^2.5.6",
-    "nsp": "^2.1.0",
-    "mocha": "^2.4.5",
     "istanbul": "^0.4.2",
+    "jshint": "^2.5.6",
+    "mocha": "^2.4.5",
+    "nodemon": "^1.9.0",
+    "nsp": "^2.1.0",
     "should": "~8.2.2",
     "supertest": "~1.2.0"
   },
@@ -30,6 +31,7 @@
   },
   "scripts": {
     "start": "node .",
+    "startDev": "nodemon .",
     "pretest": "npm install; jshint .",
     "test": "istanbul cover --include-all-sources _mocha -- -R spec",
     "posttest": "nsp check"
