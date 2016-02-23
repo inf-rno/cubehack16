@@ -110,3 +110,6 @@ To teardown the application (stop and remove containers)
 
 To start/stop/restart a specific service
     docker-compose start/stop/restart [service]
+
+To bash into a container
+    docker exec -it <container-name> bash
