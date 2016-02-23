@@ -6,7 +6,7 @@ angular.module('app')
 
   $stateProvider.state('app', {
     url: '/app',
-    templateUrl: '/components/base/AppBase.html',
+    templateUrl: 'components/base/AppBase.html',
     abstract: true,
     controller: 'BaseViewController',
     controllerAs : 'BaseView'
