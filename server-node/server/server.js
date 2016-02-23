@@ -18,6 +18,17 @@ app.start = function() {
   });
 };
 
+/*
+ * BOILERPLATE-DEMO Can be deleted along all other code with the same comment
+ */
+app.get('/testlog', function(req, res) {
+  var messageSent = 'Sending logs to server from console at ' + Date.now() + ' \r\n';
+
+  console.error(messageSent);
+
+  res.send(messageSent);
+});
+
 // Bootstrap the application, configure models, datasources and middleware.
 // Sub-apps like REST API are mounted via boot scripts.
 boot(app, __dirname, function(err) {
