@@ -7,3 +7,9 @@ WORKDIR /app
 # Install app dependencies
 COPY ./package.json /app
 RUN npm install --no-optional
+
+# Copy code
+COPY . /app
+
+# start the server
+CMD [ "npm", "start" ]

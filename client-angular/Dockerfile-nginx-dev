@@ -1,8 +1,4 @@
 FROM nginx
 
-# Create app directory
-RUN mkdir -p /app
-WORKDIR /app
-
 # copy over nginx configuration
 COPY  ./nginx-dev.conf /etc/nginx/nginx.conf

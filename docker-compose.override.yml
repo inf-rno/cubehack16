@@ -6,21 +6,30 @@ services:
     ports: 
       - '27017:27017'
   api:
+    build:
+      context: ./server-node
+      dockerfile: Dockerfile-dev
+    ports: 
+      - '3000:3000'
     #mount code as volume
     volumes:
-      - ./server-node/server:/app/server
-      - ./server-node/common:/app/common
-    command: [ npm, run, startDev ]  
+      - ./server-node:/app
+    working_dir: /app 
   nginx:
     build:
       context: ./client-angular
       dockerfile: Dockerfile-nginx-dev
-    volumes:
-      - ./client-angular/app:/app/app:ro
+    ports:
+     - '80:80'
+     - '443:443'
+    # client link used for browser-sync proxy
     links:
       - client
   client:
+    build:
+      context: ./client-angular
+      dockerfile: Dockerfile-dev
     #mount code as volume
     volumes:
-      - ./client-angular/app:/app/app
-    command: [ npm, start, --unsafe-perm ]  
+      - ./client-angular:/app
+    working_dir: /app

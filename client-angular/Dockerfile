@@ -5,12 +5,11 @@ RUN mkdir -p /app
 WORKDIR /app
 
 # Install app dependencies
-COPY ./package.json /app
-COPY ./bower.json /app
-COPY ./.bowerrc /app
+COPY ["./package.json", "./bower.json", "./.bowerrc", "/app/"]
+RUN npm install --no-optional --unsafe-perm
 
-RUN npm install --no-optional
+# Copy code
+COPY . /app
 
-# Copy gulpfiles
-COPY ./gulpfile.js /app
-COPY ./gulptasks /app/gulptasks
+# build the app into the build dir
+CMD [ "npm", "run", "build" ]

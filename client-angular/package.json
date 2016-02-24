@@ -41,10 +41,10 @@
   },
   "scripts": {
     "postinstall": "bower install --allow-root",
-    "start": "bower install --allow-root && mkdir -p ./app/libs && cp -r ./bower_components ./app/libs/ && gulp",
+    "start": "npm install --no-optional && gulp",
     "test": "gulp runTests",
     "test-single-run": "gulp runTests",
-    "build": "cd app && gulp build"
+    "build": "gulp build"
   },
   "engines": {
     "node": "=5.0.0"

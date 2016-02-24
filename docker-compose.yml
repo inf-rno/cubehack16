@@ -3,26 +3,22 @@ services:
   # mongo service
   db:
     image: mongo
-  # node-loopback rest api server
+  # node-loopback rest api service
   api:
-    # sets where the Dockerfile will be to build the image
     build: ./server-node
-    ports: 
-      - '3000:3000'
     links:
       - db
-  # nginx container to serve static client files
+  # nginx service to serve static client files
   nginx:
     build:
       context: ./client-angular
       dockerfile: Dockerfile-nginx
-    ports:
-     - '80:80'
-     - '443:443'
-  # client builder container to build static files for nginx
+  # client builder service to build static files for nginx
   client:
     build: ./client-angular
-
+    volumes:
+      - ./client-angular/build:/app/build
+  # sumologic log collector service
   sumologiccollector:
     # Folder containing Dockerfile to build the sumologic collector    image
     build: ./sumologiccollector

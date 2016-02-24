@@ -6,3 +6,6 @@ WORKDIR /app
 
 # copy over nginx configuration
 COPY  ./nginx.conf /etc/nginx/nginx.conf
+
+# copy built files over
+COPY ./build /app/www

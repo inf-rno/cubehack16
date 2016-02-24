@@ -43,12 +43,12 @@ RUN
 Using your fav terminal (see windows gotcha above) from the project root, run:
     vagrant up
 
-This will provision an Ubuntu VM (your docker host), forward ports down to the host OS, install docker and
-docker-compose, setup rsync for synced folders and start watching for changes, build and run your application.
+This will provision an Ubuntu VM (your docker host), forward ports down to the host OS, install docker, docker-compose
+and docker-cloud, setup rsync for synced folders and start watching for changes, build and run your application.
 
-This should launch the rest server at http://localhost:3000/ and the client at http://localhost:8080/
+This should launch the rest server at http://localhost:3000/ and the client at http://localhost:8080/.
 
-TODO: Add nice to haves like bash completion, bash history, set working dir etc.
+The project root should be synced to the /vagrant directory in the VM and the rsync watcher should be active.
 
 -----------------------------------
 DEBUG
@@ -91,9 +91,6 @@ Container/Docker
 
 Once SSHed into the VM you can run any docker commands as you would normally..
 
-Switch to the shared dir (your project root inside the VM)
-    cd /vagrant
-
 Then:
 
 To build the application
@@ -109,7 +106,7 @@ To teardown the application (stop and remove containers)
     docker-compose down
 
 To start/stop/restart a specific service
-    docker-compose start/stop/restart [service]
+    docker-compose start/stop/restart <service-name>
 
-To bash into a container
+To bash into a running container
     docker exec -it <container-name> bash

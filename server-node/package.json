@@ -31,8 +31,8 @@
   },
   "scripts": {
     "start": "node .",
-    "startDev": "nodemon .",
-    "pretest": "npm install; jshint .",
+    "startDev": "npm install && nodemon .",
+    "pretest": "jshint .",
     "test": "istanbul cover --include-all-sources _mocha -- -R spec",
     "posttest": "nsp check"
   },

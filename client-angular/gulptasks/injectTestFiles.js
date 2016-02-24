@@ -26,8 +26,8 @@ gulp.task('injectTestFiles', function() {
             bowerFiles({
               paths: {
                 bowerDirectory: 'app/libs/bower_components',
-                bowerrc: './app/bowerrc',
-                bowerJson: './app/bower.json'
+                bowerrc: './bowerrc',
+                bowerJson: './bower.json'
               }
             })
           ).concat(['./app/libs/bower_components/angular-mocks/angular-mocks.js', './tests/unit-tests/**.js']), {
