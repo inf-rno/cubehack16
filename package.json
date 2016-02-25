@@ -2,7 +2,7 @@
   "name": "m21lab-boilerangularloop",
   "version": "0.0.1",
   "description": "Boiler plate for angular client app and loopback server",
-  "license": "Proprietary",
+  "license": "LicenseRef-LICENSE",
   "private": true,
   "scripts": {
     "install": "cd client-angular && npm install && cd ../server-node && npm install && cd ../pre-push-hook && npm install"

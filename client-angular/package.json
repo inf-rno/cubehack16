@@ -2,7 +2,7 @@
   "name": "client-angular",
   "version": "0.1.0",
   "description": "The boilerplate for angularJS client",
-  "license": "Proprietary",
+  "license": "LicenseRef-LICENSE",
   "private": true,
   "devDependencies": {
     "angular-mocks": "^1.5.0",

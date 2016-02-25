@@ -2,7 +2,7 @@
   "name": "pre-push-hook",
   "version": "0.0.1",
   "description": "Code linter on Git pre-push operation",
-  "license": "Proprietary",
+  "license": "LicenseRef-LICENSE",
   "private": true,
   "devDependencies": {
     "del": "^2.2.0",
