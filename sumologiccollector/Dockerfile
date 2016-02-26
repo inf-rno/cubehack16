@@ -4,6 +4,9 @@
 FROM ubuntu:14.04
 MAINTAINER Sumo Logic <docker@sumologic.com>
 
+ENV SUMO_ACCESS_ID=su7UEd74j6rmWm
+ENV SUMO_ACCESS_KEY=f02R677gpCijdUcAIQ5Pu38To5klQgRWcHYueLOb5Hlfxc8xslWHxz3Pq2y2M3Q6
+
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update --quiet && \
  apt-get upgrade --quiet --force-yes -y && \

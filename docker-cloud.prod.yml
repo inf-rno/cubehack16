@@ -1,0 +1,51 @@
+# mongo service
+db:
+  image: mongo
+# node-loopback rest api service
+api:
+  image: m21lab/boilerangularloop_api
+  links:
+    - db
+  restart: always
+  ports:
+    - '3000:3000'
+  tags:
+    - prod
+    - boiler
+  environment:
+      NODE_ENV: 'production'
+# nginx service to serve static client files
+nginx:
+  image: m21lab/boilerangularloop_nginx
+  restart: always
+  ports:
+    - '80'
+    - '443'
+  tags:
+    - prod
+    - boiler
+# loadbalancer
+lb:
+  image: dockercloud/haproxy
+  ports:
+    - '80:80'
+    - '443:443'
+  # provide role to enable container to query docker-cloud api for changes in stack configuration
+  roles: 
+    - global
+  links:
+    - nginx
+  tags:
+    - prod
+    - boiler
+# sumologic log collector service
+sumologiccollector:
+  image: m21lab/boilerangularloop_sumologiccollector
+  volumes:
+    # to access to docker logs
+    - /var/run/docker.sock:/var/run/docker.sock
+  tags:
+    - prod
+    - boiler
+  environment:
+      SUMO_COLLECTOR_NAME: 'boilerangularloop-prod'

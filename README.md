@@ -40,6 +40,9 @@ WINDOWS GOTCHAs
 RUN
 -----------------------------------
 
+After the first clone, do, this will install pre-push hooks:
+    npm install
+
 Using your fav terminal (see windows gotcha above) from the project root, run:
     vagrant up
 
@@ -119,4 +122,16 @@ To bash into a running container (used to debug/run tests etc.)
 DEPLOY
 -----------------------------------
 
-Customize ./deploy.sh and run it
+# Create an account at https://cloud.docker.com
+
+# Create a node https://cloud.docker.com/node/cluster/list/
+    Click: "Launch new node cluster"
+    Create one for stage and another for prod, setting stage and app name tags
+
+# SSH to the development VM
+    vagrant ssh
+
+# Customize ./deploy-stage.sh and run it
+    Change PROJECT_NAME, REPO_NAME, REPO_EMAIL, REPO_PWD to project specific values
+    Update the project name in docker-cloud.yml for all images
+
