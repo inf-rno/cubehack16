@@ -1,0 +1,35 @@
+# mongo service
+db:
+  image: mongo
+# node-loopback rest api service
+api:
+  image: jmathewsmac/boilerangularloop_api
+  links:
+    - db
+  restart: always
+  ports:
+    - '3000:3000'
+# nginx service to serve static client files
+nginx:
+  image: jmathewsmac/boilerangularloop_nginx
+  restart: always
+  ports:
+    - '80'
+    - '443'
+# loadbalancer
+lb:
+  image: dockercloud/haproxy
+  ports:
+    - '80:80'
+    - '443:443'
+  # provide role to enable container to query docker-cloud api for changes in stack configuration
+  roles: 
+    - global
+  links:
+    - nginx
+# sumologic log collector service
+sumologiccollector:
+  image: jmathewsmac/boilerangularloop_sumologiccollector
+  volumes:
+    # to access to docker logs
+    - /var/run/docker.sock:/var/run/docker.sock

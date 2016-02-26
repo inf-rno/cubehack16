@@ -25,6 +25,12 @@ var ignore = [
   '!./app/libs/bower_components/**/*.*'
 ];
 
+if (process.env.NODE_ENV === 'production') {
+  ignore.concat(['!./app/components/base/EnvConfig.js']);
+} else {
+  ignore.concat(['!./app/components/base/EnvConfig.production.js']);
+}
+
 var jsSrc = [
   './app/**/*.js'
 ].concat(ignore);
@@ -41,7 +47,7 @@ gulp.task('default', ['sass', 'inject', 'browser-sync', 'watch']);
 
 // inject resources
 gulp.task('inject', function() {
-  gulp.src('app/index.html')
+  return gulp.src('app/index.html')
     .pipe(loadPlugins.inject(gulp.src(bowerFiles({
       paths: {
         bowerrc: './.bowerrc',

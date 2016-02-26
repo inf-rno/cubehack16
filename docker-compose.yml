@@ -18,15 +18,3 @@ services:
     build: ./client-angular
     volumes:
       - ./client-angular/build:/app/build
-  # sumologic log collector service
-  sumologiccollector:
-    # Folder containing Dockerfile to build the sumologic collector    image
-    build: ./sumologiccollector
-    volumes:
-      # to access to docker logs
-      - /var/run/docker.sock:/var/run/docker.sock
-    environment:
-      # m21lab@macadamian.com
-      SUMO_ACCESS_ID: 'su7UEd74j6rmWm'
-      SUMO_ACCESS_KEY: 'f02R677gpCijdUcAIQ5Pu38To5klQgRWcHYueLOb5Hlfxc8xslWHxz3Pq2y2M3Q6'
-      SUMO_COLLECTOR_NAME: 'boilerangularloop'
