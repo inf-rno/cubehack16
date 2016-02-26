@@ -108,5 +108,15 @@ To teardown the application (stop and remove containers)
 To start/stop/restart a specific service
     docker-compose start/stop/restart <service-name>
 
-To bash into a running container
+To view logs (optionally filtered by service name)
+    docker-compose logs <service-name>
+
+To bash into a running container (used to debug/run tests etc.)
     docker exec -it <container-name> bash
+
+
+-----------------------------------
+DEPLOY
+-----------------------------------
+
+Customize ./deploy.sh and run it

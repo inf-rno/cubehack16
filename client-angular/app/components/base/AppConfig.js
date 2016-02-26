@@ -2,6 +2,6 @@
 
 angular.module('app.config')
   .constant('AppConfig', {
-    title: 'Admin Portal'
+    title: 'Angular Boilerplate'
   })
-  .constant('SERVER_URL', 'http://localhost:3000/api/');
+;
