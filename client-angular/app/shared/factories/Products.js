@@ -6,9 +6,9 @@
  */
 angular.module('app.factories')
 
-.factory('Products', function($resource, SERVER_URL) {
-  console.log(SERVER_URL);
-  return $resource(SERVER_URL + 'Products', {}, {
+.factory('Products', function($resource, SERVER_API_URL) {
+  console.log(SERVER_API_URL);
+  return $resource(SERVER_API_URL + 'Products', {}, {
     add: {
       method: 'POST',
       isArray: false
