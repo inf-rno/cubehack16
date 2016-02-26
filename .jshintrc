@@ -72,6 +72,7 @@
     "editUserForm": false,
     "alert": false,
     "MediaService": false,
-    "twttr": false
+    "twttr": false,
+    "inject": true
   }
 }

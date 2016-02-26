@@ -9,24 +9,24 @@
 
 
 // BASE
-@import "base/variables";
-@import "base/fonts";
-@import "base/elements";
-@import "base/states";
+@import 'base/variables';
+@import 'base/fonts';
+@import 'base/elements';
+@import 'base/states';
 
 // MODULES
-@import "modules/temp";
-@import "modules/buttons";
-@import "modules/forms";
-@import "modules/modals";
-@import "modules/tables";
-@import "modules/tabs";
+@import 'modules/temp';
+@import 'modules/buttons';
+@import 'modules/forms';
+@import 'modules/modals';
+@import 'modules/tables';
+@import 'modules/tabs';
 
 // TEMPLATE
-@import "template/header";
-@import "template/body";
-@import "template/footer";
-@import "template/sidebar";
-@import "template/view";
+@import 'template/header';
+@import 'template/body';
+@import 'template/footer';
+@import 'template/sidebar';
+@import 'template/view';
 
 // VIEWS
