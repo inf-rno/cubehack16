@@ -26,9 +26,9 @@ var ignore = [
 ];
 
 if (process.env.NODE_ENV === 'production') {
-  ignore.concat(['!./app/components/base/EnvConfig.js']);
+  ignore = ignore.concat(['!./app/components/base/EnvConfig.js']);
 } else {
-  ignore.concat(['!./app/components/base/EnvConfig.production.js']);
+  ignore = ignore.concat(['!./app/components/base/EnvConfig.production.js']);
 }
 
 var jsSrc = [
