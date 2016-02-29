@@ -30,7 +30,7 @@ describe('Server starts', function() {
         if (err) {
           return done(err);
         }
-        
+
         var body = result.res.body;
 
         assert(body, 'Body is undefined');

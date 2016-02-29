@@ -3,7 +3,7 @@ Helper Functions for making HTTP requests and error
 
 sendAPIRequest Function paramters
   - host: the location of the host
-      - if testing with a NodeJS server, send require('<FILE PATH>') 
+      - if testing with a NodeJS server, send require('<FILE PATH>')
         with the path to the entry main js file
       - if testing with a URL , send the host name/ip i.e. http://0.0.0.0:3000
   - httpMethod: the HTTP method type
@@ -44,32 +44,31 @@ module.exports = {
   HEAD:'head',
 
   //send either 'get','post','put' requests
-  sendAPIRequest: function(host, httpMethod, url, data, expectedStatus, cb){
-    if(httpMethod && url && expectedStatus && cb){
-      if( isMethodValid(httpMethod) ) {
+  sendAPIRequest: function(host, httpMethod, url, data, expectedStatus, cb) {
+    if (httpMethod && url && expectedStatus && cb) {
+      if (isMethodValid(httpMethod)) {
         request(host)[httpMethod](url)
           .send(data)
           .expect(expectedStatus)
-          .end(function(err, result){
+          .end(function(err, result) {
             if (err) {
               return cb(err);
             }
             return cb(null,result);
           });
       }
-      else{
+      else {
         return cb(new Error('HTTP method not valid'),null);
       }
     }
-    else{
+    else {
       return cb(new Error('Not all arguments are met'),null);
     }
 
   },
 
-
   //Helper function to check if the error is the one expected
-  checkForErrorResponse: function(result, expectedErr, cb){
+  checkForErrorResponse: function(result, expectedErr, cb) {
     var actualErr = result.res.body.error;
 
     should.equal(actualErr.status, expectedErr.status);
