@@ -3,19 +3,27 @@ db:
   image: mongo
 # node-loopback rest api service
 api:
-  image: jmathewsmac/boilerangularloop_api
+  image: m21lab/boilerangularloop_api
   links:
     - db
   restart: always
   ports:
     - '3000:3000'
+  tags:
+    - stage
+    - boiler
+  environment:
+      NODE_ENV: 'stage'
 # nginx service to serve static client files
 nginx:
-  image: jmathewsmac/boilerangularloop_nginx
+  image: m21lab/boilerangularloop_nginx
   restart: always
   ports:
     - '80'
     - '443'
+  tags:
+    - stage
+    - boiler
 # loadbalancer
 lb:
   image: dockercloud/haproxy
@@ -27,9 +35,17 @@ lb:
     - global
   links:
     - nginx
+  tags:
+    - stage
+    - boiler
 # sumologic log collector service
 sumologiccollector:
-  image: jmathewsmac/boilerangularloop_sumologiccollector
+  image: m21lab/boilerangularloop_sumologiccollector
   volumes:
     # to access to docker logs
     - /var/run/docker.sock:/var/run/docker.sock
+  tags:
+    - stage
+    - boiler
+  environment:
+      SUMO_COLLECTOR_NAME: 'boilerangularloop-stage'

@@ -8,11 +8,9 @@
 # name for project, stack, image prefixes etc.
 PROJECT_NAME="boilerangularloop"
 # image repo to push to
-REPO_NAME="jmathewsmac"
-
-# use your own creds here
-export DOCKERCLOUD_USER=jmathewsmac
-export DOCKERCLOUD_APIKEY=0c8fd562-606c-44b2-ad06-b88a509a48b5
+REPO_NAME="m21lab"
+REPO_EMAIL="m21lab@macadamian.com"
+REPO_PWD="Mac#1234"
 
 ######################## BUILD ###########################
 
@@ -32,6 +30,8 @@ docker-compose -p $PROJECT_NAME -f docker-compose.yml -f docker-compose.prod.yml
 
 # only need to push custom images
 
+docker login -e $REPO_EMAIL -u $REPO_NAME -p $REPO_PWD
+
 echo "Pushing client image..."
 docker tag ${PROJECT_NAME}_nginx $REPO_NAME/${PROJECT_NAME}_nginx 
 docker push $REPO_NAME/${PROJECT_NAME}_nginx
@@ -47,10 +47,10 @@ docker push $REPO_NAME/${PROJECT_NAME}_sumologiccollector
 ######################## DEPLOY ###########################
 
 echo "Try to create a new stack called $PROJECT_NAME in docker cloud if not present..."
-docker-cloud stack create --name $PROJECT_NAME -f docker-cloud.yml
+docker-cloud stack create --name ${PROJECT_NAME}-stage -f docker-cloud.stage.yml
 
 echo "Update said stack..."
-docker-cloud stack update $PROJECT_NAME
+docker-cloud stack update -f docker-cloud.stage.yml ${PROJECT_NAME}-stage
 
-echo "Redeploy all teh things..."
-docker-cloud stack redeploy $PROJECT_NAME
+echo "Redeploy all the things..."
+docker-cloud stack redeploy ${PROJECT_NAME}-stage
