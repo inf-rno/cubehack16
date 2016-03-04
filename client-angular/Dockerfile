@@ -11,5 +11,7 @@ RUN npm install --no-optional --unsafe-perm
 # Copy code
 COPY . /app
 
-# build the app into the build dir
+# Run as root because the build dir is mounted
+
+# Build the app into the build dir
 CMD [ "npm", "run", "build" ]

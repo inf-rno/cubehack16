@@ -13,6 +13,7 @@ TODO: write scripts for each platform to make these automatic??
 
    vagrant plugin install vagrant-docker-compose    
    vagrant plugin install vagrant-gatling-rsync
+   vagrant plugin install vagrant-vbguest
 
 
 

@@ -11,5 +11,10 @@ RUN npm install --production --no-optional
 # Copy code
 COPY . /app
 
-# start the server
+# Switch to non root user
+RUN useradd -ms /bin/bash node && \
+	chown -R node /app
+USER node
+
+# Start the server
 CMD [ "npm", "start" ]

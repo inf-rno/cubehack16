@@ -1,4 +1,4 @@
-FROM nginx
+FROM nginx:1.9
 
 # Create app directory
 RUN mkdir -p /app
@@ -9,3 +9,7 @@ COPY  ./nginx.conf /etc/nginx/nginx.conf
 
 # copy built files over
 COPY ./build /app/www
+
+# switch to non root user
+RUN chown -R nobody /app
+USER nobody

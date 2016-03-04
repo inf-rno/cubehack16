@@ -1,6 +1,6 @@
 # mongo service
 db:
-  image: mongo
+  image: mongo:3.2.3
 # node-loopback rest api service
 api:
   image: m21lab/boilerangularloop_api
@@ -19,14 +19,14 @@ nginx:
   image: m21lab/boilerangularloop_nginx
   restart: always
   ports:
-    - '80'
+    - '8080'
     - '443'
   tags:
     - stage
     - boiler
 # loadbalancer
 lb:
-  image: dockercloud/haproxy
+  image: dockercloud/haproxy:1.1.1
   ports:
     - '80:80'
     - '443:443'

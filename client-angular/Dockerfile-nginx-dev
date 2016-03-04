@@ -1,4 +1,6 @@
-FROM nginx
+FROM nginx:1.9
 
 # copy over nginx configuration
 COPY  ./nginx-dev.conf /etc/nginx/nginx.conf
+
+USER nobody

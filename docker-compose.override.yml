@@ -20,8 +20,8 @@ services:
       context: ./client-angular
       dockerfile: Dockerfile-nginx-dev
     ports:
-     - '80:80'
-     - '443:443'
+     - '80:8080'
+     - '443:4433'
     # client link used for browser-sync proxy
     links:
       - client

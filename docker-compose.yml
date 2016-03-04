@@ -2,7 +2,7 @@ version: '2'
 services:
   # mongo service
   db:
-    image: mongo
+    image: mongo:3.2.3
   # node-loopback rest api service
   api:
     build: ./server-node

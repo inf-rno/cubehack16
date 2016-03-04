@@ -1,4 +1,6 @@
 FROM node:5.6
 
+# running as root to make volume mounting and sharing simpler for dev
+
 # start the gulp watcher
 CMD [ "npm", "start", "--unsafe-perm" ]

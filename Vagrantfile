@@ -19,9 +19,10 @@ Vagrant.configure(2) do |config|
   # use rsync instead
   config.vm.synced_folder '.', '/vagrant', type: 'rsync',
     rsync__exclude: [".git/", ".idea/", ".vagrant/", "node_modules/", "bower_components/", "build/", "coverage/"],
-    rsync__verbose: true
+    rsync__verbose: true,
+    rsync_args: ["--verbose", "--archive", "--delete", "-z", "--copy-links", "--update"]  
 
-config.vm.synced_folder "./server-node/coverage", "/vagrant/server-node/coverage"
+  config.vm.synced_folder "./server-node/coverage", "/vagrant/server-node/coverage"
 
   # cd to /vagrant on ssh
   config.vm.provision "shell",
