@@ -57,6 +57,7 @@
   "strict": true,
   "globals": {
     "$": false,
+    "_": false, 
     "console": false,
     "localStorage": false,
     "document": false,
