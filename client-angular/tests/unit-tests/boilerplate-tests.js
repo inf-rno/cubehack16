@@ -10,9 +10,9 @@ describe('boilerplate', function() {
     $controller = _$controller_;
   }));
 
-  describe('Base Controller Presence', function() {
-    it('should have BaseViewController defined', function() {
-      var controller = $controller('BaseViewController');
+  describe('MenuViewController', function() {
+    it('should have MenuViewController defined', function() {
+      var controller = $controller('MenuViewController');
       expect(controller).toBeDefined();
     });
 

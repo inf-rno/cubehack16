@@ -5,7 +5,7 @@ angular.module('app.landingPage')
     $stateProvider.state('app.landingPage', {
       url: '/landing',
       views: {
-        'content': {
+        'childViewContent': {
           templateUrl: 'components/LandingPage/LandingPage.html',
           controller: 'LandingPageController',
           controllerAs: 'landing'
