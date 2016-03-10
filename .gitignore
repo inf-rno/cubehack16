@@ -3,3 +3,4 @@
 .vagrant
 bamboo-test-outputs.json
 client-bamboo-test-outputs.json
+server-bamboo-test-outputs.json

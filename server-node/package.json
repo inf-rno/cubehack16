@@ -18,9 +18,10 @@
   },
   "devDependencies": {
     "istanbul": "^0.4.2",
-    "jshint": "^2.5.6",
     "jscs": "^2.10.1",
+    "jshint": "^2.5.6",
     "mocha": "^2.4.5",
+    "mocha-bamboo-reporter": "^1.1.0",
     "nodemon": "^1.9.0",
     "nsp": "^2.1.0",
     "should": "~8.2.2",
@@ -35,7 +36,7 @@
     "start": "node .",
     "startDev": "npm install && nodemon .",
     "pretest": "jshint . && jscs .",
-    "test": "istanbul cover --include-all-sources _mocha -- -R spec",
+    "test": "istanbul cover --include-all-sources _mocha -- -R mocha-bamboo-reporter --reporter-options output=./test/server-bamboo-test-outputs.json",
     "posttest": "nsp check"
   },
   "engines": {

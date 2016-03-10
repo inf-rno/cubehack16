@@ -24,7 +24,7 @@ describe('Server starts', function() {
 
   describe('API Entry point', function() {
 
-    it('Should retrun time', function(done) {
+    it('Should return time', function(done) {
       helperTest.sendAPIRequest(app, helperTest.GET, '/', {}, SUCCESS_OK.status,
                                 function(err, result) {
         if (err) {
