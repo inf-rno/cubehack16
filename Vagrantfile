@@ -7,6 +7,10 @@ Vagrant.configure(2) do |config|
 
   # port forwarding for the api server
   config.vm.network "forwarded_port", guest: 3000, host: 3000
+  # port forwarding for the server's node-inspector instance
+  config.vm.network "forwarded_port", guest: 9090, host: 9090
+  config.vm.network "forwarded_port", guest: 5858, host: 5858
+
   # port forwarding for the client app
   config.vm.network "forwarded_port", guest: 80, host: 8080
   config.vm.network "forwarded_port", guest: 443, host: 4433

@@ -17,3 +17,10 @@ All of the tests that are created in this projects are located in the test/ fold
 
     npm test
 
+
+Debug
+_______
+
+node-inspector is started along nodemon on port 9090:
+
+http://localhost:9090/?port=5858

@@ -17,11 +17,13 @@
     "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
+    "concurrently": "^2.0.0",
     "istanbul": "^0.4.2",
     "jscs": "^2.10.1",
     "jshint": "^2.5.6",
     "mocha": "^2.4.5",
     "mocha-bamboo-reporter": "^1.1.0",
+    "node-inspector": "^0.12.7",
     "nodemon": "^1.9.0",
     "nsp": "^2.1.0",
     "should": "~8.2.2",
@@ -34,7 +36,7 @@
   "scripts": {
     "autoformat": "jscs -x .",
     "start": "node .",
-    "startDev": "npm install && nodemon .",
+    "startDev": "npm install && concurrently \"node-inspector --web-port 9090\" \"nodemon --debug .\"",
     "pretest": "jshint . && jscs .",
     "test": "istanbul cover --include-all-sources _mocha -- -R mocha-bamboo-reporter --reporter-options output=./test/server-bamboo-test-outputs.json",
     "posttest": "nsp check"
