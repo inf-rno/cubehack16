@@ -8,7 +8,7 @@ angular.module('app.landingPage')
         'childViewContent': {
           templateUrl: 'components/LandingPage/LandingPage.html',
           controller: 'LandingPageController',
-          controllerAs: 'landing'
+          controllerAs: 'landingVm'
         }
       }
     });
