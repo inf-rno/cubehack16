@@ -1,6 +1,5 @@
 .DS_Store
 /node_modules/
 .vagrant
-bamboo-test-outputs.json
-client-bamboo-test-outputs.json
+client-bamboo-test-outputs.xml
 server-bamboo-test-outputs.json
