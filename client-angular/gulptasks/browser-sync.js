@@ -6,10 +6,13 @@ var path = require('path');
 
 var pathPieces = path.join(__dirname, '..').split(/(\/|\\)/);
 
-gulp.task('browser-sync', function() {
+gulp.task('browser-sync', ['inject'], function() {
   browserSync.init(['./app/**/*.css', './app/**/*.js', '!./app/libs/**'], {
     startPath: pathPieces[pathPieces.length - 1],
-    server: './app',
+    server: {
+      baseDir: './app',
+      index: '../build/index.html'
+    },
     port: 4000,
     ui: {
       port: 35555,

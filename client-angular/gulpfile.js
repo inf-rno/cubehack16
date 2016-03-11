@@ -65,7 +65,7 @@ gulp.task('inject', function() {
     .pipe(loadPlugins.inject(gulp.src(cssSrc), {
       relative: true
     }))
-    .pipe(gulp.dest('./app'));
+    .pipe(gulp.dest('./build/'));
 });
 
 /*----------------------DIST BUILD-----------------------------*/
