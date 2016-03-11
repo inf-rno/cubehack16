@@ -6,10 +6,12 @@ This will only need to be done once per machine.
 
 TODO: write scripts for each platform to make these automatic??
 
-1. Vagrant
+1. Virtual Box >= 5 MUST be installed, else you'll end up having problems with npm packages inside client container
+
+2. Vagrant
     https://www.vagrantup.com/downloads.html
 
-2. Vagrant plugins
+3. Vagrant plugins
 
    vagrant plugin install vagrant-docker-compose    
    vagrant plugin install vagrant-gatling-rsync
