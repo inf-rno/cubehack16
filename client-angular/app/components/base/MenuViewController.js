@@ -1,10 +1,12 @@
-'use strict';
+(function() {
+  'use strict';
 
-angular.module('app')
-  .controller('MenuViewController', MenuViewController);
+  angular.module('app')
+    .controller('MenuViewController', MenuViewController);
 
-MenuViewController.$inject = [];
+  MenuViewController.$inject = [];
 
-function MenuViewController() {
-  var vm = this;
-}
+  function MenuViewController() {
+    var vm = this;
+  }
+})();

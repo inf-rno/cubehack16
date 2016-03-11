@@ -1,11 +1,13 @@
-'use strict';
+(function() {
+  'use strict';
 
-angular.module('app')
+  angular.module('app')
 
-.config(['$urlRouterProvider', function($urlRouterProvider) {
+  .config(['$urlRouterProvider', function($urlRouterProvider) {
 
-  $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/');
 
-  // Redirects to default state which is app.landing => app/landing
-  $urlRouterProvider.when('/', '/app/landing');
-}]);
+    // Redirects to default state which is app.landing => app/landing
+    $urlRouterProvider.when('/', '/app/landing');
+  }]);
+})();

@@ -1,7 +1,8 @@
-'use strict';
+(function() {
+  'use strict';
 
-angular.module('app.config')
-  .constant('AppConfig', {
-    title: 'Angular Boilerplate'
-  })
-;
+  angular.module('app.config')
+    .constant('AppConfig', {
+      title: 'Angular Boilerplate'
+    });
+})();

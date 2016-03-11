@@ -1,6 +1,8 @@
-'use strict';
+(function() {
+  'use strict';
 
-module.exports = function enableAuthentication(server) {
-  // enable authentication
-  server.enableAuth();
-};
+  module.exports = function enableAuthentication(server) {
+    // enable authentication
+    server.enableAuth();
+  };
+})();

@@ -1,7 +1,9 @@
-'use strict';
+(function() {
+  'use strict';
 
-angular.module('app.landingPage', [
-  //Internal Modules:
-  //Lib Modules:
-  'ui.router'
-]);
+  angular.module('app.landingPage', [
+    //Internal Modules:
+    //Lib Modules:
+    'ui.router'
+  ]);
+})();

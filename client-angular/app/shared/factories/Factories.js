@@ -1,1 +1,4 @@
-angular.module('app.factories', []);
+(function() {
+  'use strict';
+  angular.module('app.factories', []);
+})();
