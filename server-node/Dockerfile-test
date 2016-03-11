@@ -1,0 +1,20 @@
+FROM node:5.6
+
+# Create app directory
+RUN mkdir -p /app
+WORKDIR /app
+
+# Install app dependencies
+COPY ./package.json /app
+RUN npm install --production --no-optional
+
+# Copy code
+COPY . /app
+
+# Run as root because we need to be able to output a test file
+
+# Set the node environment to unit-test
+ENV NODE_ENV unit-test
+
+# Run the tests
+CMD [ "npm", "test" ]
