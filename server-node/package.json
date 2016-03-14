@@ -39,6 +39,7 @@
     "startDev": "npm install && concurrently \"node-inspector --web-port 9090\" \"nodemon --debug .\"",
     "pretest": "jshint . && jscs .",
     "test": "istanbul cover --include-all-sources _mocha -- -R mocha-bamboo-reporter --reporter-options output=./test/server-bamboo-test-outputs.json",
+    "bambooTest": "npm install && npm test",
     "posttest": "nsp check"
   },
   "engines": {
