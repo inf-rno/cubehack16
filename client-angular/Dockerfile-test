@@ -14,4 +14,4 @@ COPY . /app
 # Run as root to output test results file
 
 # Run the tests
-CMD [ "npm", "bambooTest" ]
+CMD [ "npm", "run", "bambooTest" ]

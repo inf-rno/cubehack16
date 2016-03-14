@@ -17,4 +17,4 @@ COPY . /app
 ENV NODE_ENV unit-test
 
 # Run the tests
-CMD [ "npm", "bambooTest" ]
+CMD [ "npm", "run", "bambooTest" ]
