@@ -129,12 +129,15 @@ DEPLOY
 
 # Create a node https://cloud.docker.com/node/cluster/list/
     Click: "Launch new node cluster"
-    Create one for stage and another for prod, setting stage and app name tags
+    Create one for stage and another for prod
+    Add tags stage and app name to the node cluster e.g.: stage, boilerangularloop
 
 # SSH to the development VM
     vagrant ssh
 
 # Customize ./deploy-stage.sh and run it
     Change PROJECT_NAME, REPO_NAME, REPO_EMAIL, REPO_PWD to project specific values
-    Update the project name in docker-cloud.yml for all images
+    Update the project name and repository (found here https://cloud.docker.com/repository/list/) in docker-cloud.yml for all images
+      e.g.: m21lab/boilerangularloop_nginx => reponame/projectname_nginx
+
 
