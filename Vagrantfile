@@ -22,7 +22,7 @@ Vagrant.configure(2) do |config|
   config.vm.synced_folder ".", "/vagrant", disabled: true
   # use rsync instead
   config.vm.synced_folder '.', '/vagrant', type: 'rsync',
-    rsync__exclude: [".git/", ".idea/", ".vagrant/", "node_modules/", "bower_components/", "build/", "coverage/"],
+    rsync__exclude: [".git/", ".idea/", ".vagrant/", "node_modules/", "bower_components/", "build/", "coverage/", "app/assets/styles/*.css"],
     rsync__verbose: true,
     rsync_args: ["--verbose", "--archive", "--delete", "-z", "--copy-links", "--update"]  
 
