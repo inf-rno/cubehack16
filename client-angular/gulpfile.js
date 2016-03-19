@@ -59,9 +59,16 @@ gulp.task('inject', function() {
       name: 'bower',
       relative: true
     }))
-    .pipe(loadPlugins.inject(gulp.src(jsSrc).pipe(loadPlugins.angularFilesort()), {
-      relative: true
-    }))
+    .pipe(loadPlugins.inject(gulp.src(jsSrc)
+      .pipe(loadPlugins.angularFilesort())
+      .on('error', function(e) {
+        // Log the error
+        loadPlugins.util.log(e);
+        // call end() on pipe to continue without breaking the gulp flow
+        this.end();
+      }), {
+        relative: true
+      }))
     .pipe(loadPlugins.inject(gulp.src(cssSrc), {
       relative: true
     }))
