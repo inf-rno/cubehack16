@@ -1,29 +1,44 @@
 # mongo service
 db:
   image: mongo:3.2.3
+
 # node-loopback rest api service
 api:
-  image: m21lab/boilerangularloop_api
+  image: boilerangularloop/boilerangularloop_api
   links:
     - db
   restart: always
   ports:
-    - '3000:3000'
+    - '3000'
   tags:
     - stage
     - boiler
   environment:
-      NODE_ENV: 'stage'
+    NODE_ENV: 'stage'
+    #HAProxy route api and auth callback requests to server
+    VIRTUAL_HOST: 'https://*/api/*, https://*/auth/google, https://*/auth/google/*, https://*/apistatus, https://*/explorer, https://*/explorer/*'
+    # Higher priority then nginx to be sure server calls are handled properly
+    VIRTUAL_HOST_WEIGHT: 10
+    #Redirects HTTP => HTTPS
+    FORCE_SSL: true
+
 # nginx service to serve static client files
 nginx:
-  image: m21lab/boilerangularloop_nginx
+  image: boilerangularloop/boilerangularloop_nginx
   restart: always
   ports:
     - '8080'
-    - '443'
   tags:
     - stage
     - boiler
+  environment:
+    #HAProxy route any http request to client
+    VIRTUAL_HOST: 'https://*'
+    # Less priority than api to be sure this fallback wildcard does not redirects server calls
+    VIRTUAL_HOST_WEIGHT: 0
+    #Redirects HTTP => HTTPS
+    FORCE_SSL: true
+
 # loadbalancer
 lb:
   image: dockercloud/haproxy:1.2.1
@@ -35,13 +50,18 @@ lb:
   roles: 
     - global
   links:
+    - api
     - nginx
   tags:
     - stage
     - boiler
+  environment:
+    #SSL certificate (see README on how it was created)
+    DEFAULT_SSL_CERT: -----BEGIN RSA PRIVATE KEY-----\nMIIEpAIBAAKCAQEA1X/paZlqTgzsUrNN6YBi46cfsTOiwTuaxpA1YWWfSi6W0V7N\ngOLjaomwYznS+/CbNCJMv7yBxxeBzd8HmJQm4LauZRlZzeTLDvneHk9p8DsNnPiu\nlqrkKr6n3lNU2MlfACjNgK++OI+IWOKnbXsaF9LeSXe/7nU8LYNdC61Y0AZxHtx9\nx9OPaGl1IWOVh2FN3aqC6AfuT58v7hzVJymxZ9MpQLV/lD8as+c/fn1DRMrPTHZ2\nASVhOlXQ82+S8f5TQxMbnkaxeo17WVfp9Cha3IVHR9aJgTy6LIaxx/W56k0ykhAM\nAU69KQXz0y02v1V2xDLnHxZxiIh44KEKqIuPpwIDAQABAoIBAAHmNGZbFgYBuWx2\n6d+E49xQlUiXRABiDltr1v250LPxPCg6pqtZ2VoORYJsdkMFfev1zib6f1ENFXuG\nW2PxFXN0TJLbqd/aBDBq6p3saO3ZKKLX133BoWv77DRfG2ceS3kN494cMh4AsN7R\njVm8+ZtypcWTiiKN6m4hOAetkBexos74TNXIAlxetEniTReY/8kX2JhcXE0saa/d\nB04PIt774csB9z5PaZ2tUNeH4hEiajTUcc1rdbSLg++k5dR3HELRtzTR+Ki84qE5\n5ZrnqqoSiMuRNQ/WQD/PKy8SUOBglrFx3DxxFfsDxIOgSQu/fwdVnnMUuRXuSM+t\nZ4KN2+ECgYEA+UElJjdR7jKTlzzyLjlgc60S+dxU2rlY6tfQYMPckQpj3OGq7zM9\n67YPEoIA7AhzURn65OfMutgz0n208dMFF2klX7ip0SfPNDWMzobuWDsCXeKWUDAG\nmZ3/EGvh1K+qyK7IAPi6ZvscOdrHoAHymAtJKdsrThlVuo6RyriZBtcCgYEA20cN\n7pT3P4/S8WTXuebF1/QoI4VaFfy2Tb967RqnnQTX52zCcKRW15HalR9LxsLvtrwT\nqN7UbGtB1m5WTfhbttUb1EBuHs3kwgqIb9KKjmHA4lM/EccxssDX/XeFpbFtsJHN\nrA21FZYXmb4VYEaWyGb0X22O2kFeVBK7vKmHM7ECgYA1NC+e0a4eXxNb8/lp3nt1\nFZt4VAyUx31wW3KyRPx+xS39xvm6p0BvYOQkujVCLKeYxyfj1oq/00h0hLqr57Qt\nhBcjMIKnD41OAqQ0rV6Q3L+rlKMrKKUwAyaftbd1s62Luqsccfsv4ifrPYTg5amH\nxNjwI0VCHWxMLwR1tiOL7wKBgQDbBtBdvaJydQDpaicpY9++4/yr7mmbiL+4TUlG\nSNefudTHLxXRWfX8gY3qYkZYlSLITnj8twdL/J7Yx4GhhDBoIdoYWvsj/dlAETFT\nMOSBcBcweqKG6Yc02/djEN4IMYA1XI4qC88TbsbIJNxJPHkkV+JE57RHQgAszkGE\nI3oPIQKBgQDOZylUGVmYcKDAJe92Y62d8PVj8lahpDan9TufbGk9ZfNo6haFt+8A\nFIFxTJ8BT+NxXzyuosYwSQ13Qs3ImNKiyi21pZ0aePFpTpFmiDK7oMutRFXElsH5\nomHb5WztTXzQLyEaMjdKvJO3sIYbMLI02Nm3gq8JiOkQ8V2n0gAlBg==\n-----END RSA PRIVATE KEY-----\n-----BEGIN CERTIFICATE-----\nMIIDnjCCAoagAwIBAgIJAIJDbtxqgXfxMA0GCSqGSIb3DQEBBQUAMF4xCzAJBgNV\nBAYTAkNBMQswCQYDVQQIDAJRQzERMA8GA1UEBwwIR2F0aW5lYXUxEzARBgNVBAoM\nCk1hY2FkYW1pYW4xGjAYBgNVBAMMEUJvaWxlckFuZ3VsYXJMb29wMB4XDTE2MDMz\nMTE4MzU0MloXDTE3MDMzMTE4MzU0MlowXjELMAkGA1UEBhMCQ0ExCzAJBgNVBAgM\nAlFDMREwDwYDVQQHDAhHYXRpbmVhdTETMBEGA1UECgwKTWFjYWRhbWlhbjEaMBgG\nA1UEAwwRQm9pbGVyQW5ndWxhckxvb3AwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAw\nggEKAoIBAQDVf+lpmWpODOxSs03pgGLjpx+xM6LBO5rGkDVhZZ9KLpbRXs2A4uNq\nibBjOdL78Js0Iky/vIHHF4HN3weYlCbgtq5lGVnN5MsO+d4eT2nwOw2c+K6WquQq\nvqfeU1TYyV8AKM2Ar744j4hY4qdtexoX0t5Jd7/udTwtg10LrVjQBnEe3H3H049o\naXUhY5WHYU3dqoLoB+5Pny/uHNUnKbFn0ylAtX+UPxqz5z9+fUNEys9MdnYBJWE6\nVdDzb5Lx/lNDExueRrF6jXtZV+n0KFrchUdH1omBPLoshrHH9bnqTTKSEAwBTr0p\nBfPTLTa/VXbEMucfFnGIiHjgoQqoi4+nAgMBAAGjXzBdMAsGA1UdDwQEAwIEMDAT\nBgNVHSUEDDAKBggrBgEFBQcDATA5BgNVHREEMjAwgi5sYi5ib2lsZXJhbmd1bGFy\nbG9vcC43NWRiYWQxMC5zdmMuZG9ja2VyYXBwLmlvMA0GCSqGSIb3DQEBBQUAA4IB\nAQAL4/FYhxvD8wlqZzHcn4jRMv6tK6M12I2EoF/bqdYRwOJHUufh9aStZUAyCsz5\nx4TeU0pMclfu51W1TWPfRCE6mIJPNmjdEe6twoNFjaqkrdogwaKWXAgb9socdgQm\nRFPKFUg9bnay1X74LnIWloX8afxcIMgO0L8p8fivSjPwzF2CXQ2WCaxP6pneTvek\n9a7EMZ6X9L2jtVurrdd3XaOOk95UErp/4UZ3d9tf+h24oahaIQaAPlSLeRUoRQuJ\n5Gx5B1DfLwIQXwsG8f4tTFyvlSGplX/uXRXqcnFY/51z4xzkJ/Iq5PjXpv43DJPX\nJw+aMvrZIe/nJzwRzkJaBRzW\n-----END CERTIFICATE----- 
+
 # sumologic log collector service
 sumologiccollector:
-  image: m21lab/boilerangularloop_sumologiccollector
+  image: boilerangularloop/boilerangularloop_sumologiccollector
   volumes:
     # to access to docker logs
     - /var/run/docker.sock:/var/run/docker.sock

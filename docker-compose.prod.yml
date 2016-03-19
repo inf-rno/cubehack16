@@ -4,9 +4,13 @@ services:
   api:
     depends_on:
       - sumologiccollector
+    environment:
+      NODE_ENV: 'production'
+
   client:
     environment:
       NODE_ENV: 'production'
+
   # sumologic log collector service
   sumologiccollector:
     # Folder containing Dockerfile to build the sumologic collector    image

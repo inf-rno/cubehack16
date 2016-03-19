@@ -120,6 +120,21 @@ To view logs (optionally filtered by service name)
 To bash into a running container (used to debug/run tests etc.)
     docker exec -it <container-name> bash
 
+-----------------------------------
+Generate a self signed certificate for stage
+-----------------------------------
+
+Update the CN and DNS.1 in cert_configuration.stage.cnf for your app
+
+From your host computer:
+    openssl genrsa -out private-key.pem 2048
+    openssl req -new -x509 -days 365 -key private-key.pem -config cert_configuration.stage.cnf -out certificate.pem
+    cp private-key.pem cert.pem
+    cat certificate.pem >> cert.pem
+    awk 1 ORS='\\n' cert.pem
+
+Then copy paste the output value into the SSL_CERT value of docker-cloud.stage.yml
+
 
 -----------------------------------
 DEPLOY

@@ -14,8 +14,6 @@ REPO_PWD="Mac#1234"
 
 ######################## DEPLOY ###########################
 
-docker login -e $REPO_EMAIL -u $REPO_NAME -p $REPO_PWD
-
 echo "Try to create a new stack called $PROJECT_NAME in docker cloud if not present..."
 docker-cloud stack create --name ${PROJECT_NAME}-prod -f docker-cloud.prod.yml
 

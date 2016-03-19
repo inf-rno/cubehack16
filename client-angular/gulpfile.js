@@ -25,7 +25,7 @@ var ignore = [
   '!./app/libs/bower_components/**/*.*'
 ];
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'stage') {
   ignore = ignore.concat(['!./app/components/base/EnvConfig.js']);
 } else {
   ignore = ignore.concat(['!./app/components/base/EnvConfig.production.js']);

@@ -8,9 +8,11 @@
 # name for project, stack, image prefixes etc.
 PROJECT_NAME="boilerangularloop"
 # image repo to push to
-REPO_NAME="m21lab"
-REPO_EMAIL="m21lab@macadamian.com"
+REPO_NAME="boilerangularloop"
+REPO_EMAIL="m21lab+boilerangularloop@macadamian.com"
 REPO_PWD="Mac#1234"
+
+######################## BUILD ###########################
 
 ######################## BUILD ###########################
 
@@ -20,8 +22,18 @@ docker-compose -p $PROJECT_NAME -f docker-compose.yml -f docker-compose.prod.yml
 echo "Running production client image to build static web files..."
 docker-compose -p $PROJECT_NAME -f docker-compose.yml -f docker-compose.prod.yml up client
 
+echo "Get the exit code of the container to stop the build in case of error"
+CLIENT_EXIT_CODE=$(docker-compose -p $PROJECT_NAME -f docker-compose.yml -f docker-compose.prod.yml  ps -q  client | xargs docker inspect -f '{{ .State.ExitCode }}')
+
 echo "Removing the client container that just finished the build..."
 docker-compose -p $PROJECT_NAME -f docker-compose.yml -f docker-compose.prod.yml rm -f client
+
+echo "Client exit code :" $CLIENT_EXIT_CODE 
+if [ "$CLIENT_EXIT_CODE" = "1" ]
+then
+    echo "An error occured while building client container, exiting";
+    exit 1;
+fi
 
 echo "Rebuild the nginx image to include the built static web files..."
 docker-compose -p $PROJECT_NAME -f docker-compose.yml -f docker-compose.prod.yml build nginx
