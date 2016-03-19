@@ -91,12 +91,12 @@ gulp.task('copyBower', function() {
     }))
     .pipe(jsFilter)
     .pipe(loadPlugins.concat('vendor.js'))
-    .pipe(gulp.dest('./build'))
+    .pipe(gulp.dest('./build/vendor'))
     .pipe(jsFilter.restore)
     .pipe(cssFilter)
     .pipe(loadPlugins.minifyCss())
     .pipe(loadPlugins.concat('vendor.css'))
-    .pipe(gulp.dest('./build'))
+    .pipe(gulp.dest('./build/vendor'))
     .pipe(cssFilter.restore);
 });
 
@@ -121,24 +121,39 @@ gulp.task('copyCSS', ['sass'], function() {
     .pipe(gulp.dest('./build'));
 });
 
-gulp.task('copyFonts', function() {
-   gulp.src(bowerFiles({
+gulp.task('copyTranslations', function() {
+  return gulp.src('./app/translations/*.json')
+    .pipe(gulp.dest('./build/translations'));
+});
+
+gulp.task('copyImages', function() {
+  return gulp.src('./app/assets/images/*')
+    .pipe(gulp.dest('./build/images'));
+});
+
+gulp.task('copyFonts', function(cb) {
+  gulp.src(bowerFiles({
       paths: {
         bowerrc: './.bowerrc',
         bowerJson: './bower.json'
       }
     }))
-    .pipe(loadPlugins.filter(['**/*.{eot,svg,ttf,woff,woff2}', '!slick.*']))
+    .pipe(loadPlugins.filter(['**/*.{eot,svg,ttf,woff,woff2}']))
     .pipe(loadPlugins.flatten())
-    .pipe(gulp.dest('build/fonts/'));
+    .pipe(gulp.dest('./build/fonts/'));
+
+  gulp.src('./app/assets/fonts/')
+    .pipe(loadPlugins.filter(['**/*.{eot,svg,ttf,woff,woff2}']))
+    .pipe(gulp.dest('./build/fonts'));
+  cb();
 });
 
-gulp.task('build', ['clean', 'sass', 'copyBower', 'copyJS',
- 'copyHTML', 'copyCSS', 'copyFonts', 'jshintAndJscsForce'], function() {
+gulp.task('build', ['clean', 'sass', 'copyBower', 'copyJS', 
+  'copyHTML', 'copyCSS', 'copyFonts', 'copyTranslations', 'copyImages', 'jshintAndJscsForce'], function() {
   return gulp.src('./build/index.html')
     .pipe(loadPlugins.htmlReplace({
-      'css': ['vendor.css?rev=@@hash', 'app.min.css?rev=@@hash'],
-      'js': ['vendor.js?rev=@@hash', 'app.min.js?rev=@@hash']
+      'css': ['/vendor/vendor.css?rev=@@hash', 'app.min.css?rev=@@hash'],
+      'js': ['/vendor/vendor.js?rev=@@hash', 'app.min.js?rev=@@hash']
     }))
     .pipe(loadPlugins.revAppend())
     .pipe(gulp.dest('./build'));
