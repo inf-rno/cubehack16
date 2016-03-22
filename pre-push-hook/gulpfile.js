@@ -69,7 +69,7 @@ gulp.task('pre-push:pre-clean', function() {
 gulp.task('pre-push:getCommitId', function(cb) {
   var argv = require('yargs').argv;
   var localBranch = argv.local;
-  var remoteBranch = argv.remote.match(/refs\/(?:for|drafts)\/(\w*)/)[1];
+  var remoteBranch = argv.remote.match(/refs\/(?:for|drafts|heads)\/(\w*)/)[1];
   var remoteName = argv.origin;
 
   console.log('Local Branch:', localBranch);
