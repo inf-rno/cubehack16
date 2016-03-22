@@ -9,7 +9,7 @@ var loadPlugins = require('gulp-load-plugins')({
 
 gulp.task('sass', function() {
   return gulp.src(['./app/assets/styles/style.scss'])
-    .pipe(loadPlugins.sass())
+    .pipe(loadPlugins.sass().on('error', loadPlugins.sass.logError))
     .pipe(loadPlugins.autoprefixer({
       browsers: ['last 2 versions'],
       cascade: true
