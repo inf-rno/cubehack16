@@ -10,7 +10,9 @@ gulp.task('browser-sync', ['inject'], function() {
   browserSync.init(['./app/**/*.css', './app/**/*.js', '!./app/libs/**'], {
     startPath: pathPieces[pathPieces.length - 1],
     server: {
-      baseDir: './app',
+      // All images are copied during the build into /images, but in dev, they are in app/assets/images.
+      // Adding app/assets as base dir for index.thml to be able to access images
+      baseDir: ['./app', './app/assets'],
       index: '../build/index.html'
     },
     port: 4000,
