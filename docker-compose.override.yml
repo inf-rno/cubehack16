@@ -11,6 +11,7 @@ services:
       dockerfile: Dockerfile-dev
     ports: 
       - '3000:3000'
+      - '3001:3001'
       # expose ports for node-inspector to be accessed remotely
       - '9090:9090'
       - '5858:5858'

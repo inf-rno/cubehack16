@@ -19,7 +19,13 @@
         res.send('Game state updated '+JSON.stringify(req.body))
     });
     
+    function handleRawSensorUpdate(data)
+    {
+        console.log("Handling raw sensor: "+JSON.stringify(data));
+    }
+    
     app.put('/devices/:id/sensor', function (req, res) {
+        handleRawSensorUpdate(req.body);
         res.send('Sensor updated '+JSON.stringify(req.body))
     });
     
@@ -70,4 +76,33 @@
     });
     
     app.listen(3000);
+    
+    
+    var net = require('net');
+    net.createServer(function(socket) {
+        var stream="";
+        socket.write('Hello, this is TCP\n');
+        socket.on('data', function (d) {
+            try
+            {
+                stream+=d;
+                while(true)
+                {
+                    var start = stream.indexOf("{");
+                    var end = stream.indexOf("}");
+                    if (end === -1){break;}
+                    var datum = stream.substring(start, end+1);
+                    stream = stream.substring(end+1);
+                    handleRawSensorUpdate(JSON.parse(datum)); 
+                
+            }
+            }
+            catch(err)
+            {
+                console.error("Something went wrong");
+                console.error(err);
+                try{socket.end();}catch(ignored){}
+            }
+        });
+    }).listen(3001);
 })();
