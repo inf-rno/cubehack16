@@ -1,45 +1,15 @@
 (function() {
   'use strict';
 
-  var loopback = require('loopback');
-  var boot = require('loopback-boot');
+    var express = require('express')
+    var cors = require('cors')
+    var app = express()
 
-  var app = module.exports = loopback();
-
-  app.start = function() {
-    // start the web server
-    return app.listen(function() {
-      app.emit('started');
-      var baseUrl = app.get('url').replace(/\/$/, '');
-      console.log('Web server listening at: %s', baseUrl);
-      if (app.get('loopback-component-explorer')) {
-        var explorerPath = app.get('loopback-component-explorer').mountPath;
-        console.log('Browse your REST API at %s%s', baseUrl, explorerPath);
-      }
-    });
-  };
-
-  /*
-   * BOILERPLATE-DEMO Can be deleted along all other code with the same comment
-   */
-  app.get('/testlog', function(req, res) {
-    var messageSent = 'Sending logs to server from console at ' + Date.now() + ' \r\n';
-
-    console.error(messageSent);
-
-    res.send(messageSent);
-  });
-
-  // Bootstrap the application, configure models, datasources and middleware.
-  // Sub-apps like REST API are mounted via boot scripts.
-  boot(app, __dirname, function(err) {
-    if (err) {
-      throw err;
-    }
-
-    // start the server if `$ node server.js`
-    if (require.main === module) {
-      app.start();
-    }
-  });
+    app.use(cors());
+    
+    app.get('/', function (req, res) {
+        res.send('Hello World')
+    })
+    
+    app.listen(3000)
 })();

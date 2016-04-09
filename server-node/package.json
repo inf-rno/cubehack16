@@ -9,11 +9,7 @@
     "compression": "~1.6.1",
     "cors": "~2.7.1",
     "helmet": "~0.14.0",
-    "loopback": "~2.26.2",
-    "loopback-boot": "~2.16.0",
-    "loopback-component-explorer": "~2.3.0",
-    "loopback-connector-mongodb": "^1.13.3",
-    "loopback-datasource-juggler": "~2.45.0",
+    "express":"~4.13.4",
     "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
