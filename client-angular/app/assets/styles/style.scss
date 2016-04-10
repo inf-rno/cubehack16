@@ -30,3 +30,49 @@
 @import 'template/view';
 
 // VIEWS
+
+
+.scorebar {
+	color: white !important;
+	h3 {
+		color: white;
+	}
+}
+
+b {
+	font-size: 35px;
+}
+
+.megamath {
+	font-size: xx-large;
+	text-align: center;
+}
+
+.chances {
+	background: grey;
+    color: white;
+    text-align: center;
+    font-size: large;
+}
+
+.timer {
+	background: orange;
+    color: white;
+    text-align: center;
+    font-size: large;
+}
+
+h4.chg {
+	text-align: center;
+}
+
+.pattern {
+	.blink {
+		background: orange;
+		min-height: 100px;
+		width: 100%;
+		color: white;
+		text-align: center;
+		font-size: xx-small;
+	}
+}

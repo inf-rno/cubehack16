@@ -1,27 +1,90 @@
-<div>
-    <div ng-if="landingVm.state==='init'">
-        <!--<label>Name</label><input type="text" ng-model="landingVm.playerName"/>-->
-        <label>Select your team</label>
+<ion-header-bar class="bar-dark">
+  <h1 class='title'>cubeHAcK</h1>
+</ion-header-bar>
+<ion-content>
+  <div ng-if="landingVm.state==='init'">      
+    <div class="list">
+      <label class="item item-input item-select">
+        <div class="input-label">
+          Select your team
+        </div>
         <select name="singleSelect" ng-model="landingVm.color">
           <option value="red">Red</option>
           <option value="green">Green</option>
-          <option value="blue">Blue</option>
         </select>
-        <button class="button button-calm" ng-click="landingVm.start()">Start!</button>
+      </label>
     </div>
-    <div ng-if="landingVm.state==='done'">
-        <div ng-if="landingVm.didWin">WINNER :)</div>
-
-        <div ng-if="!landingVm.didWin">Game Over :(</div>
-
-        <button ng-click="landingVm.reset()">Play Again</button>
-    </div>
-    <div ng-if="landingVm.state==='inProgress'" ng-style="{'background-color':landingVm.color}">
-        GO GO GO!!!
-        <div>Puzzle Box</div>
-        <div ng-if="landingVm.puzzle">
-            {{landingVm.puzzle.type}}
+    <button class="button button-block button-calm" ng-click="landingVm.start()">Start!</button>
+  </div>
+  <div ng-if="landingVm.state==='done'">
+      <div class="item item-image full-image">
+          <img ng-if="landingVm.didWin" src="./assets/img/yay.png">
+          <img ng-if="!landingVm.didWin" src="./assets/img/nay.png">
+      </div>
+      <button class="button button-block button-calm" ng-click="landingVm.reset()">Play Again!</button>
+  </div>
+  <div ng-if="landingVm.state==='inProgress'">
+    <div class="row scorebar">
+      <div class="col" ng-style="{'background-color':'red'}">
+        <div class='padding'>
+          <h3>RED TEAM</h3>
+          <span><b>2/5</b> CUBES</span>
         </div>
-        <button class="button button-calm" ng-click="landingVm.foundBox()">Found a puzzle box</button>
+      </div>
+      <div class="col" ng-style="{'background-color':'green'}">
+        <div class='padding'>
+          <h3>GREEN TEAM</h3>
+          <span><b>1/5</b> CUBES</span>
+        </div>
+      </div>
     </div>
-</div>
+    <div ng-if="landingVm.puzzle">
+      <div class="list">
+        <div class="item item-divider chances">
+          YOU HAVE <b>{{landingVm.puzzle.chances}}</b> CHANCE{{landingVm.puzzle.chances === 1? '': 'S'}} LEFT
+        </div>
+        <h4 class='chg'>CHALLENGE:</h4>
+        <div ng-if="landingVm.puzzle.type === 'math'">
+          <div class="item item-body">
+            <h1 class='megamath'>
+              {{landingVm.puzzle.question}}
+            </h1>
+          </div>
+          <div class="item item-image">
+            <img src="./assets/img/clap.gif">
+          </div>
+        </div>
+        <div ng-if="landingVm.puzzle.type === 'scream'" class='scream'>
+          <div class="item item-image">
+            <img src="./assets/img/scream.jpg">
+          </div>
+        </div>
+        <div ng-if="landingVm.puzzle.type === 'pattern'" class='pattern'>
+          <div class="item item-body">
+            <div class="full-image blink" ng-style="{'opacity': landingVm.patternOn ? 1 : 0}">
+              Tap that Cube
+            </div>
+          </div>
+          <button class="button button-block button-calm" ng-click="landingVm.playPattern()">PLAY</button>
+          <div class="item item-image">
+            <img src="./assets/img/tap.png">
+          </div>
+        </div>
+        <div ng-if="landingVm.puzzle.type === 'light'" class='light'>
+          <div class="item item-image full-image">
+            <img src="./assets/img/dark.jpg">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div ng-if="!landingVm.puzzle">
+      <div class="item item-image">
+        <img src="./assets/img/find_cube.png">
+      </div>
+      <button class="button button-block button-calm" ng-click="landingVm.foundBox()">I FOUND A BOX</button>
+    </div>
+  </div>
+</ion-content>
+<ion-footer-bar class="bar-energized timer" ng-if="landingVm.state === 'inProgress' && landingVm.puzzle">
+  <h1 class="title"><b>0:{{landingVm.timeLeft}}</b> REMAINING</h1>
+</ion-footer-bar>

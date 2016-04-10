@@ -3,6 +3,6 @@
 
   angular.module('app.config')
     .constant('AppConfig', {
-      title: 'Angular Boilerplate'
+      title: 'CubeHack'
     });
 })();

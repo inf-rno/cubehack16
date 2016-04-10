@@ -3,9 +3,9 @@
 
   angular.module('app.landingPage')
 
-  .controller('LandingPageController', ['$scope','SERVER_URL', '$http', LandingPageController]);
+  .controller('LandingPageController', ['$scope','SERVER_URL', '$http', '$interval', '$timeout', LandingPageController]);
 
-  function LandingPageController($scope, url, $http) {
+  function LandingPageController($scope, url, $http, $interval, $timeout) {
     var vm = this;
     vm.state = "";
     vm.requestOutput = url;
@@ -15,12 +15,50 @@
     vm.didRegister = false;
     vm.didWin = false;
     vm.puzzle = null;
+    var timer = undefined;
+    var pattern = [400, 100, 200, 100, 200, 100, 400, 100, 400, 500, 400, 100, 400, 100];
+    var patternIndex = 0 ;
 
     function handleGameUpdate(data)
     {
+        if (vm.state !== 'inProgress' && data.state === 'inProgress') {
+            startTimer();
+        }
         vm.state = data.state;
         vm.puzzle = data.activePuzzle;
         vm.didWin = data.winner === vm.color;
+    }
+
+    function startTimer() {
+        vm.timeLeft = 60;
+        timer = $interval(function() {
+            vm.timeLeft--;
+            if (vm.timeLeft <= 0)
+            {
+                vm.state = 'init';
+                $interval.cancel(timer);
+            }
+          }, 1000);
+    }
+    
+    vm.playPattern = function() {
+        patternIndex = 0;
+        vm.patternOn = true;
+        nextStepInPattern();
+    };
+
+    function nextStepInPattern() {
+        $timeout(function() {
+            //console.log(patternIndex, vm.patternOn);
+            vm.patternOn = !vm.patternOn;
+            if(patternIndex < pattern.length) {
+                patternIndex++;
+                nextStepInPattern();    
+            } else {
+                vm.patternOn = false;
+                patternIndex = 0;
+            }
+        }, pattern[patternIndex]);
     }
     
     var requestGameUpdate = _.throttle(function()
