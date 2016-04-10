@@ -7,13 +7,13 @@
           <option value="green">Green</option>
           <option value="blue">Blue</option>
         </select>
-        <button ng-click="landingVm.start()">Start!</button>
+        <button class="button button-calm" ng-click="landingVm.start()">Start!</button>
     </div>
     <div ng-if="landingVm.state==='done'">
         <div ng-if="landingVm.didWin">WINNER :)</div>
-        
+
         <div ng-if="!landingVm.didWin">Game Over :(</div>
-        
+
         <button ng-click="landingVm.reset()">Play Again</button>
     </div>
     <div ng-if="landingVm.state==='inProgress'" ng-style="{'background-color':landingVm.color}">
@@ -22,6 +22,6 @@
         <div ng-if="landingVm.puzzle">
             {{landingVm.puzzle.type}}
         </div>
-        <button ng-click="landingVm.foundBox()">Found a puzzle box</button>
+        <button class="button button-calm" ng-click="landingVm.foundBox()">Found a puzzle box</button>
     </div>
 </div>

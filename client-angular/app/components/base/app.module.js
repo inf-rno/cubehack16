@@ -7,6 +7,7 @@
     'app.landingPage',
     //Lib Modules:
     'ui.router',
-    'ngResource'
+    'ngResource',
+    'ionic'
   ]);
 })();
