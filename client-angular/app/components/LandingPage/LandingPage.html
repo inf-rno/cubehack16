@@ -1,3 +1,23 @@
 <div>
-  Hello World
+    <div ng-if="landingVm.state==='init'">
+        <!--<label>Name</label><input type="text" ng-model="landingVm.playerName"/>-->
+        <label>Select your team</label>
+        <select name="singleSelect" ng-model="landingVm.color">
+          <option value="red">Red</option>
+          <option value="green">Green</option>
+          <option value="blue">Blue</option>
+        </select>
+        <button ng-click="landingVm.start()">Start!</button>
+    </div>
+    <div ng-if="landingVm.state==='done'">
+        <div ng-if="landingVm.didWin">WINNER :)</div>
+        
+        <div ng-if="!landingVm.didWin">Game Over :(</div>
+        
+        <button ng-click="landingVm.reset()">Play Again</button>
+    </div>
+    <div ng-if="landingVm.state==='inProgress'" ng-style="{'background-color':landingVm.color}">
+        GO GO GO!!!
+        <div>Puzzle Box</div>
+    </div>
 </div>
