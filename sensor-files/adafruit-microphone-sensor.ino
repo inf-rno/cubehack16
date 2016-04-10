@@ -5,7 +5,7 @@ const int LOUDNESS_THRESHOLD = 6;
 const int STREAK_THRESHOLD = 2500;
 const int TAPS_IN_A_ROW = 5;
 const int MAX_T_BETWEEN_TAPS = 1500;
-const int TAPS_WIN = false;
+const int TAPS_WIN = true;
 int numTaps;
 int lastTapTime;
 int streakStart;
@@ -50,10 +50,12 @@ void loop() {
 
    double value = getSignalStrength(maxSignal, minSignal);
 
-   if(isHighValue(value)) {
+   if(isHighValue(value))
+   {
       // We've found a high value!
        numTaps++;
        lastTapTime = millis();
+       Serial.println("Noise!");
 
        //We may have a streak:
        if(!TAPS_WIN && (streakStart == -1)) {
@@ -64,15 +66,23 @@ void loop() {
             streakStart  = -1;
        }
    }
-
-   if(hadLongLapse(lastTapTime)){
-       if(TAPS_WIN && (numTaps == TAPS_IN_A_ROW)) {
-            Serial.println("WINNNNNN SOUND TAPS"); // TODO replace with server call
-            numTaps = 0;
-       } else {
-           numTaps = 0;
-           Serial.println(".");
+   else if((numTaps > 0) && (hadLongLapse(lastTapTime)))
+   {
+       if(TAPS_WIN)
+       {
+           if(numTaps == TAPS_IN_A_ROW)
+           {
+               Serial.println("WINNNNNN SOUND TAPS"); // TODO replace with server call
+           }
+           else
+           {
+               Serial.println("Lost");
+           }
+       }
+       else
+       {
            streakStart = -1;
        }
+       numTaps = 0;
    }
 }
