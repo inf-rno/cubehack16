@@ -156,7 +156,7 @@ gulp.task('copyFonts', function(cb) {
 });
 
 gulp.task('build', ['clean', 'sass', 'copyBower', 'copyJS', 
-  'copyHTML', 'copyCSS', 'copyFonts', 'copyTranslations', 'copyImages', 'jshintAndJscsForce'], function() {
+  'copyHTML', 'copyCSS', 'copyFonts', 'copyTranslations', 'copyImages'], function() {
   return gulp.src('./build/index.html')
     .pipe(loadPlugins.htmlReplace({
       'css': ['/vendor/vendor.css?rev=@@hash', 'app.min.css?rev=@@hash'],
