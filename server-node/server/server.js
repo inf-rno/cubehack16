@@ -13,12 +13,14 @@
     var sensors = {};
     var state = "init"
     var winner = "";
+    var activePuzzle = null;
+    var availablePuzzles = [{type:"riddle"},{type:"math"},{type:"pattern"}];
     var devices = {
         "1":
         {
             hint:"Somewhere in the Lounge",
             name:"Lounge Cube",
-            color:"green",
+            color:"",
             x:0.5,
             y:0.5
         },
@@ -44,6 +46,13 @@
             return;
         }
         state = req.body.state;
+        if (state === "init")
+        {
+            for(var key in devices)
+            {
+                devices[key].color = "";
+            }
+        }
         res.send('Game state updated '+JSON.stringify(req.body))
     });
     
@@ -82,6 +91,7 @@
             len++;
             var device = devices[key];
             var color = device.color;
+            if (!color || color === ""){continue;}
             colors[color] = colors[color] ? colors[color] : 0;
             colors[color] ++;
             max = Math.max(colors[color], max);
@@ -108,8 +118,14 @@
             state:state, //init, inProgress, done
             winner:winner,
             devices:devices,
-            players:players
+            players:players,
+            activePuzzle:activePuzzle
         })
+    });
+    
+    app.post('/game/:id/puzzle',function(req, res){
+        //the user found a puzzle box, cue up a random puzzle
+        activePuzzle = availablePuzzles[Math.floor(Math.random()*availablePuzzles.length)];
     });
     
     app.post('/game/:id/players', function (req, res) {

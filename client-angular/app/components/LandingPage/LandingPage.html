@@ -19,5 +19,9 @@
     <div ng-if="landingVm.state==='inProgress'" ng-style="{'background-color':landingVm.color}">
         GO GO GO!!!
         <div>Puzzle Box</div>
+        <div ng-if="landingVm.puzzle">
+            {{landingVm.puzzle.type}}
+        </div>
+        <button ng-click="landingVm.foundBox()">Found a puzzle box</button>
     </div>
 </div>

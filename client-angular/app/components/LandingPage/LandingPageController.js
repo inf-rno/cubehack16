@@ -16,10 +16,12 @@
     vm.winner = "";
     vm.didRegister = false;
     vm.didWin = false;
+    vm.puzzle = null;
 
     function handleGameUpdate(data)
     {
         vm.state = data.state;
+        vm.puzzle = data.activePuzzle;
         vm.didWin = data.winner === vm.color;
     }
     
@@ -55,6 +57,10 @@
         if(vm.didRegister){return;}
         vm.didRegister = true;
         $http.post(url+"game/1/players", {name:vm.playerName, color:vm.color}).then(requestGameUpdate);
+    }
+    vm.foundBox = function()
+    {
+        $http.post(url+"game/1/puzzle").then(requestGameUpdate);
     }
     
     setInterval(requestGameUpdate, 2000);
