@@ -119,7 +119,8 @@
             winner:winner,
             devices:devices,
             players:players,
-            activePuzzle:activePuzzle
+            activePuzzle:activePuzzle,
+            sensors:sensors
         })
     });
     
@@ -168,8 +169,7 @@
                     var datum = stream.substring(start, end+1);
                     stream = stream.substring(end+1);
                     handleRawSensorUpdate(JSON.parse(datum)); 
-                
-            }
+                }
             }
             catch(err)
             {

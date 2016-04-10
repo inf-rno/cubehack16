@@ -6,10 +6,10 @@
 # the new repo and images
 
 # name for project, stack, image prefixes etc.
-PROJECT_NAME="boilerangularloop"
+PROJECT_NAME="cubehack"
 # image repo to push to
-REPO_NAME="boilerangularloop"
-REPO_EMAIL="m21lab+boilerangularloop@macadamian.com"
+REPO_NAME="jmathewsmac"
+REPO_EMAIL="jmathews@macadamian.com"
 REPO_PWD="Mac#1234"
 
 ######################## BUILD ###########################
