@@ -15,10 +15,10 @@
     var winner = "";
     var activePuzzle = null;
     var availablePuzzles = [
-                            //{type:"scream", attempts: 3, chances: 3},
-                            //{type:"math", question: "1 + 2 * 2  = ??!?", attempts: 2, chances: 2},
-                            //{type:"pattern", attempts: 3, chances: 3},
-                            {type:"light", attempts: 3, chances: 3}
+                        {type:"scream", attempts: 3, chances: 3}
+                        //    {type:"math", question: "1 + 2 * 2  = ??!?", attempts: 2, chances: 2}
+                            //{type:"pattern", attempts: 3, chances: 3}
+                            //{type:"light", attempts: 3, chances: 3}
                         ];//[{type:"riddle"},];
     var devices = {
         "1":
@@ -105,7 +105,7 @@
                 maxColor = color;
             }
         }
-        if (max > len /2 || true)
+        if (max > len /2)
         {
             state = "done";
             winner = maxColor;
